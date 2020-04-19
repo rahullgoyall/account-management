@@ -37,12 +37,12 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
 
 <script>
         function setSale(str) {
-        	  var bro = str.split(",");
+        	  var bro = str.split("@@");
               document.getElementById('salebro').value = bro[1];
         }; 
         
         function setPurchase(str) {
-      	  var bro = str.split(",");
+      	  var bro = str.split("@@");
             document.getElementById('purchasebro').value = bro[1];
       }; 
 </script>
@@ -74,8 +74,9 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <label class="control-label col-sm-2" for="pwd">Sales Accounts:</label>
       <div class="col-sm-4">     
       <select class="form-control" id="chosen" name="salesAccount" onChange = "setSale(value);">
+      <option disabled selected>Select sales account</option>
       <%for(PartyInfo p : saleAcc){ %>
-          <option  <%if(sname.split(",")[0].equals(p.getPartyName())){ out.print("selected=true");} %>  value='<%= p.getPartyName()+","+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
+          <option  <%if(sname.split("@@")[0].equals(p.getPartyName())){ out.print("selected=true");} %>  value='<%= p.getPartyName()+"@@"+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
          <%}%>
        </select>   
       </div>
@@ -93,7 +94,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email"><br>Brokrage:</label>
       <div class="col-sm-4">
-        <br><input type="text" id="salebro" class="form-control input-sm" name="brokrageSale" value="<% if(!sname.isEmpty()){out.print(sname.split(",")[1]);} %>">
+        <br><input type="text" id="salebro" class="form-control input-sm" name="brokrageSale" value="<% if(!sname.isEmpty()){out.print(sname.split("@@")[1]);} %>">
       </div>
     </div>
     <div class="form-group">
@@ -113,8 +114,9 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <label class="control-label col-sm-2" for="pwd">Purchase Accounts:</label>
       <div class="col-sm-4">     
       <select class="form-control input-sm" id="chosen2" name="purchaseAccount" onChange = "setPurchase(value);">
+      <option disabled selected>Select purchase account</option>
       <%for(PartyInfo p : saleAcc){ %>
-          <option <%if(pname.split(",")[0].equals(p.getPartyName())){ out.print("selected=true");} %> value='<%= p.getPartyName()+","+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
+          <option <%if(pname.split("@@")[0].equals(p.getPartyName())){ out.print("selected=true");} %> value='<%= p.getPartyName()+"@@"+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
          <%}%>
        </select>   
       </div>
@@ -122,7 +124,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email"><br>Brokrage:</label>
       <div class="col-sm-4">
-        <br><input type="text" id="purchasebro" class="form-control input-sm" name="brokragePurchase" value="<% if(!sname.isEmpty()){out.print(pname.split(",")[1]);} %>">
+        <br><input type="text" id="purchasebro" class="form-control input-sm" name="brokragePurchase" value="<% if(!sname.isEmpty()){out.print(pname.split("@@")[1]);} %>">
       </div>
     </div>
     <div class="form-group">

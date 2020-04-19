@@ -33,12 +33,12 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
 
 <script>
         function setSale(str) {
-        	  var bro = str.split(",");
+        	  var bro = str.split("@@");
               document.getElementById('salebro').value = bro[1];
         }; 
         
         function setPurchase(str) {
-      	  var bro = str.split(",");
+      	  var bro = str.split("@@");
             document.getElementById('purchasebro').value = bro[1];
       }; 
 </script>
@@ -67,7 +67,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <div class="col-sm-4">     
       <select class="form-control" id="chosen" name="salesAccount" onChange = "setSale(value);">
       <%for(PartyInfo p : saleAcc){ %>
-          <option <%if(d.getSalesAccount().equals(p.getPartyName())){ out.print("selected=true");} %>  value='<%= p.getPartyName()+","+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
+          <option <%if(d.getSalesAccount().equals(p.getPartyName())){ out.print("selected=true");} %>  value='<%= p.getPartyName()+"@@"+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
          <%}%>
        </select>   
       </div>
@@ -106,7 +106,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <div class="col-sm-4">     
       <select class="form-control" id="chosen2" name="purchaseAccount" onChange = "setPurchase(value);">
       <%for(PartyInfo p : saleAcc){ %>
-          <option <%if(d.getPurchaseAccount().equals(p.getPartyName())){ out.print("selected=true");} %> value='<%= p.getPartyName()+","+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
+          <option <%if(d.getPurchaseAccount().equals(p.getPartyName())){ out.print("selected=true");} %> value='<%= p.getPartyName()+"@@"+p.getBrokrage()%>'><%= p.getPartyName()%></option> 
          <%}%>
        </select>   
       </div>

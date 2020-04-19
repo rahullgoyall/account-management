@@ -28,12 +28,12 @@ public class DayBookDao {
 	        String deliveryDate = p.getDeliverDate();
 	        String expiryDate = p.getExpiryDate();
 	        ps.setDate(1,getDate(date));  
-	        ps.setString(2,p.getSalesAccount().split(",")[0]);
+	        ps.setString(2,p.getSalesAccount().split("@@")[0]);
 	        ps.setString(3, p.getCommodity());
 	        ps.setString(4, p.getBrokrageSale());
 	        ps.setString(5, p.getWeight());
 	        ps.setString(6, p.getRate());
-	        ps.setString(7, p.getPurchaseAccount().split(",")[0]);
+	        ps.setString(7, p.getPurchaseAccount().split("@@")[0]);
 	        ps.setString(8, p.getBrokragePurchase());
 	        ps.setDate(9, getDate(deliveryDate));
 	        ps.setDate(10, getDate(expiryDate));
@@ -55,12 +55,12 @@ public class DayBookDao {
 	        String expiryDate = p.getExpiryDate();
 	  
 	        ps.setDate(1,getDate(date));  
-	        ps.setString(2,p.getSalesAccount().split(",")[0]);
+	        ps.setString(2,p.getSalesAccount().split("@@")[0]);
 	        ps.setString(3, p.getCommodity());
 	        ps.setString(4, p.getBrokrageSale());
 	        ps.setString(5, p.getWeight());
 	        ps.setString(6, p.getRate());
-	        ps.setString(7, p.getPurchaseAccount().split(",")[0]);
+	        ps.setString(7, p.getPurchaseAccount().split("@@")[0]);
 	        ps.setString(8, p.getBrokragePurchase());
 	        ps.setDate(9, getDate(deliveryDate));
 	        ps.setDate(10, getDate(expiryDate));
