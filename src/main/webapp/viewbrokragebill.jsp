@@ -30,10 +30,6 @@
 </div>
 <%} %>
 
-<div class="row">
-  <div class="col-sm-4" style="background-color:lavender;"><b>Brokrage Bill Information List</b></div>
-  <div class="col-sm-4" ><a class="btn btn-info " role="button" href="brokragepdfopen.jsp">Pdf</a></div>
-</div> 
 
 <% 
 if(session.getAttribute("login_session")==null){
@@ -44,9 +40,9 @@ if(session.getAttribute("login_session")==null){
 
  
  <%  
- 
- List<PartyInfo> saleAcc=PartyInfoDao.getAllPartyName(); 
- List<BrokrageBill> list = new ArrayList<BrokrageBill>();
+double totalAmt = 0.0;
+List<PartyInfo> saleAcc=PartyInfoDao.getAllPartyName(); 
+List<BrokrageBill> list = new ArrayList<BrokrageBill>();
  
 String lName=request.getParameter("lName");
 String dateFrom=request.getParameter("dateFrom");
@@ -64,7 +60,17 @@ if(lName==null){
 	lName= "";
 }
 PdfGenerator.BrokrageBillPdf(list,lName,gst,dateFrom,dateTo);
+
+for(BrokrageBill bb : list){
+	totalAmt = totalAmt + Double.parseDouble(bb.getBrokrage());
+}
 %>    
+
+<div class="row">
+  <div class="col-sm-4" style="background-color:lavender;"><b>Brokrage Bill Information List</b></div>
+  <div class="col-sm-5" ><a class="btn btn-info " role="button" href="brokragepdfopen.jsp">Pdf</a></div>
+  <div class="col-sm-3" ><h4 style="margin-left: 50px"><b>Total Brokrage: </b> <b><%=totalAmt %></b></h4> </div>
+</div> 
 
 <div class="row">
 <div class="col-sm-12" style="background-color:lavender;">

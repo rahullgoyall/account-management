@@ -10,5 +10,5 @@ session.setAttribute("message", "Record successfully saved!");
 session.setAttribute("message", "Sorry, an error occurred!");
 } 
 
-response.sendRedirect("adddaybookform.jsp?sname="+t.getSalesAccount()+"&pname="+t.getPurchaseAccount()); 
+response.sendRedirect("adddaybookform.jsp?sname="+t.getSalesAccount().replace("&", "%26")+"&pname="+t.getPurchaseAccount().replace("&", "%26")); 
 %>  
