@@ -229,7 +229,7 @@ public class PdfGenerator {
 
 		//List<BrokrageBill> brokrageBills = DayBookDao.getBrokrageBillByFilter("SHUBHI", "", "");
 
-		String fileName = "C:\\New folder\\brokragebill.pdf";
+		String fileName = "C:\\New folder\\"+billPartyName+".pdf";
 		Document document = new Document();
 
 		try {
@@ -239,6 +239,7 @@ public class PdfGenerator {
 
 			Font head = new Font(FontFamily.TIMES_ROMAN,18,Font.BOLD,BaseColor.BLUE);
 			Font fontText = new Font(FontFamily.TIMES_ROMAN,11,Font.NORMAL);
+			Font partyfont = new Font(FontFamily.TIMES_ROMAN,11,Font.BOLD);
 			Font fonttable = new Font(FontFamily.UNDEFINED,9,Font.NORMAL);
 
 			Font fontBrokrageBill = new Font(FontFamily.TIMES_ROMAN,14,Font.UNDERLINE);
@@ -259,7 +260,7 @@ public class PdfGenerator {
 			datepdf.setAlignment(Element.ALIGN_CENTER);
 			document.add(datepdf);
 
-			Paragraph partyName = new Paragraph("Party Name: "+billPartyName,fontText);
+			Paragraph partyName = new Paragraph("Party Name: "+billPartyName,partyfont);
 			document.add(partyName);
 			if(partyInfo!=null){
 				if(partyInfo.getGstNo()!=null){
@@ -293,7 +294,7 @@ public class PdfGenerator {
 			document.add(new Paragraph("    "));
 
 			PdfPTable table = new PdfPTable(9);
-			table.setTotalWidth(new float[]{ 20,50, 150, 90, 50, 50, 60, 40, 60 });
+			table.setTotalWidth(new float[]{ 20,50, 210, 70, 40, 40, 60, 35, 60 });
 			table.setLockedWidth(true);
 			
 			if(dateFrom != null &&  dateTo != null){

@@ -12,9 +12,18 @@ if(session.getAttribute("login_session")==null){
 String id=request.getParameter("id");  
 String sname=request.getParameter("sname"); 
 String pname=request.getParameter("pname"); 
-if(sname == null && pname==null){
+String commodity=request.getParameter("commodity"); 
+String sbro=request.getParameter("sbro");
+String pbro=request.getParameter("pbro");
+String truck=request.getParameter("truck");
+if(sname == null && pname==null && commodity==null&&truck==null){
 	sname = "";
 	pname = "";
+	commodity = "";
+	sbro="";
+	pbro="";
+	truck="";
+			
 }
 List<PartyInfo> saleAcc=PartyInfoDao.getAllPartyName();
 List<String> commodityNames =CommodityDao.getAllCommodityName();
@@ -86,7 +95,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <div class="col-sm-4">     
       <select class="form-control" id="commodity" name="commodity">
       <%for(String c : commodityNames){ %>
-          <option  value='<%= c%>'><%= c%></option> 
+          <option <%if(commodity.equals(c)){ out.print("selected=true");} %> value='<%= c%>'><%= c%></option> 
          <%}%>
        </select>   
       </div>
@@ -94,7 +103,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email"><br>Brokrage:</label>
       <div class="col-sm-4">
-        <br><input type="text" id="salebro" class="form-control input-sm" name="brokrageSale" value="<% if(!sname.isEmpty()){out.print(sname.split("@@")[1]);} %>">
+        <br><input type="text" id="salebro" class="form-control input-sm" name="brokrageSale" value="<% if(!sname.isEmpty()&&sbro.isEmpty()){out.print(sname.split("@@")[1]);}else{out.print(sbro);} %>">
       </div>
     </div>
     <div class="form-group">
@@ -124,7 +133,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email"><br>Brokrage:</label>
       <div class="col-sm-4">
-        <br><input type="text" id="purchasebro" class="form-control input-sm" name="brokragePurchase" value="<% if(!sname.isEmpty()){out.print(pname.split("@@")[1]);} %>">
+        <br><input type="text" id="purchasebro" class="form-control input-sm" name="brokragePurchase" value="<% if(!sname.isEmpty()&&pbro.isEmpty()){out.print(pname.split("@@")[1]);}else{out.print(pbro);} %>">
       </div>
     </div>
     <div class="form-group">
@@ -141,7 +150,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Trucks:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control input-sm" name="truck">
+        <input type="text" class="form-control input-sm" name="truck" value="<%=truck %>">
       </div>
     </div>
     <div class="form-group">

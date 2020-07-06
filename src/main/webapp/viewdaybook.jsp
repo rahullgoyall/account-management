@@ -60,7 +60,7 @@ PdfGenerator.DayBookPdf(list,dateFrom,dateTo);
         <span>To:</span>
         <input id="date2" name="dateTo"  type="date" />
       
-<button class="btn btn-primary btn-sm" type="submit" name="save" >Search</button>
+<button class="btn btn-primary btn-md" type="submit" name="save" >Search</button>
 </form>
 </div>
 

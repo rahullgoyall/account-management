@@ -60,6 +60,7 @@ if(lName==null){
 	lName= "";
 }
 PdfGenerator.BrokrageBillPdf(list,lName,gst,dateFrom,dateTo);
+session.setAttribute("partyName", lName);
 
 for(BrokrageBill bb : list){
 	totalAmt = totalAmt + Double.parseDouble(bb.getBrokrage());
@@ -76,11 +77,11 @@ for(BrokrageBill bb : list){
 <div class="col-sm-12" style="background-color:lavender;">
 <form class="form-inline" method="post" action="viewbrokragebill.jsp">
         <span><b>IGST:</b></span>
-        <input style="width: 30px" id="gst" name="gst"  type="text" value="18"/>
+        <input style="width: 30px" id="gst" name="gst"  type="text" value="0"/>
         <span><b>Date From:</b></span>
-        <input id="date1" name="dateFrom"  type="date" />
+        <input id="date1" name="dateFrom"  type="date" value="<%=dateFrom %>"/>
         <span><b>To:</b></span>
-        <input id="date2" name="dateTo"  type="date" />
+        <input id="date2" name="dateTo"  type="date" value="<%=dateTo %>" />
            
       <select id="chosen" name="lName" onChange = "setSale(value);">
       <%for(PartyInfo p : saleAcc){ %>
@@ -88,7 +89,7 @@ for(BrokrageBill bb : list){
          <%}%>
        </select>   
       
-<button class="btn btn-primary btn-sm" type="submit" name="save" >Search</button>
+<button class="btn btn-primary btn-md" type="submit" name="save" >Search</button>
 </form>
 </div>
 

@@ -3,8 +3,8 @@
 <% 
 
 try {
-
-	File pdfFile = new File("C:\\New folder\\brokragebill.pdf");
+	String party = (String)session.getAttribute("partyName");
+	File pdfFile = new File("C:\\New folder\\"+party+".pdf");
 	if (pdfFile.exists()) {
 
 		if (Desktop.isDesktopSupported()) {
