@@ -28,6 +28,7 @@ if(session.getAttribute("login_session")==null){
        <li class="active"><a href="viewdaybook.jsp">Day Book</a></li>
        <li class="active"><a href="viewbrokragebill.jsp">Brokrage Bill</a></li>
        <li class="active"><a href="ledgerreportpdfopen.jsp">Ledger Report</a></li>
+       <li class="active"><a href="backup.jsp">Backup</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
