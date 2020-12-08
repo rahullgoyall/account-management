@@ -214,7 +214,7 @@ public class PdfGenerator {
 
 	public static void BrokrageBillPdf(List<BrokrageBill> brokrageBills, String billPartyName,int igst,String dateFrom,String dateTo){
 
-		File directory = new File("C:\\New folder");
+		File directory = new File("D:\\bills");
 		if (! directory.exists()){
 			directory.mkdir();
 		}
@@ -229,7 +229,7 @@ public class PdfGenerator {
 
 		//List<BrokrageBill> brokrageBills = DayBookDao.getBrokrageBillByFilter("SHUBHI", "", "");
 
-		String fileName = "C:\\New folder\\"+billPartyName+".pdf";
+		String fileName = "D:\\bills\\"+billPartyName+".pdf";
 		Document document = new Document();
 
 		try {
@@ -260,7 +260,7 @@ public class PdfGenerator {
 			datepdf.setAlignment(Element.ALIGN_CENTER);
 			document.add(datepdf);
 
-			Paragraph partyName = new Paragraph("Party Name: "+billPartyName,partyfont);
+			Paragraph partyName = new Paragraph("PARTY NAME: "+billPartyName,partyfont);
 			document.add(partyName);
 			if(partyInfo!=null){
 				if(partyInfo.getGstNo()!=null){
@@ -294,7 +294,7 @@ public class PdfGenerator {
 			document.add(new Paragraph("    "));
 
 			PdfPTable table = new PdfPTable(9);
-			table.setTotalWidth(new float[]{ 20,50, 210, 70, 40, 40, 60, 35, 60 });
+			table.setTotalWidth(new float[]{ 20,50, 210, 80, 40, 40, 60, 35, 60 });
 			table.setLockedWidth(true);
 			
 			if(dateFrom != null &&  dateTo != null){
@@ -467,7 +467,7 @@ public class PdfGenerator {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 
-		String fileName = "C:\\New folder\\cashbook.pdf";
+		String fileName = "D:\\bills\\cashbook.pdf";
 		Document document = new Document();
 
 		try {
@@ -651,7 +651,7 @@ public class PdfGenerator {
 
 		List<String> partyNames = PartyInfoDao.getAllPartyOnly();	
 
-		String fileName = "C:\\New folder\\debitreport.pdf";
+		String fileName = "D:\\bills\\debitreport.pdf";
 		Document document = new Document();
 
 		try {

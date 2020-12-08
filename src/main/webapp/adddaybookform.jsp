@@ -1,12 +1,19 @@
 <!DOCTYPE html>  
 <jsp:include page="header.jsp"></jsp:include>  
-<%@page import="dao.CommodityDao,dao.PartyInfoDao,bean.*,java.util.*"%>  
+<%@page import="dao.CommodityDao,dao.PartyInfoDao,bean.*,java.util.*,java.text.SimpleDateFormat"%>  
 
 <% 
 if(session.getAttribute("login_session")==null){
 	out.print(session.getAttribute("login_session"));
 	response.sendRedirect("index.jsp");
 } %> 
+
+<%
+Date d = new Date();
+SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+String formattedDate = simpleDateFormat.format(d);
+%>
+
 
 <%  
 String id=request.getParameter("id");  
@@ -16,6 +23,7 @@ String commodity=request.getParameter("commodity");
 String sbro=request.getParameter("sbro");
 String pbro=request.getParameter("pbro");
 String truck=request.getParameter("truck");
+String date = request.getParameter("date");
 if(sname == null && pname==null && commodity==null&&truck==null){
 	sname = "";
 	pname = "";
@@ -23,6 +31,7 @@ if(sname == null && pname==null && commodity==null&&truck==null){
 	sbro="";
 	pbro="";
 	truck="";
+	date="";
 			
 }
 List<PartyInfo> saleAcc=PartyInfoDao.getAllPartyName();
@@ -75,7 +84,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Date:</label>
       <div class="col-sm-2">
-        <input class="form-control" id="date1" name="date" placeholder="MM/DD/YYYY" type="date" autofocus/>
+        <input class="form-control" id="date1" name="date" placeholder="MM/DD/YYYY" type="date" value="<%=formattedDate %>" autofocus/>
       </div>
     </div>
     
@@ -139,11 +148,11 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Delivery / Expiry Date:</label>
       <div class="col-sm-2">
-        <input class="form-control" id="date2" name="deliverDate" placeholder="MM/DD/YYYY" type="date" />
+        <input class="form-control" id="date2" name="deliverDate" placeholder="MM/DD/YYYY" type="date" value="<%=formattedDate %>" />
       </div>
       
       <div class="col-sm-2">
-        <input class="form-control" id="date3" name="expiryDate" placeholder="MM/DD/YYYY" type="date" />
+        <input class="form-control" id="date3" name="expiryDate" placeholder="MM/DD/YYYY" type="date" value="<%=formattedDate %>" />
       </div>
     </div>
  
@@ -201,7 +210,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
 	} 
 
 	today = yyyy+'-'+mm+'-'+dd;
-	document.getElementById("date1").defaultValue = today;
-	document.getElementById("date2").defaultValue = today;
-	document.getElementById("date3").defaultValue = today;
+	//document.getElementById("date1").defaultValue = today;
+	//document.getElementById("date2").defaultValue = today;
+	//document.getElementById("date3").defaultValue = today;
 </script>

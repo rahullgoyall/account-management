@@ -10,5 +10,5 @@ session.setAttribute("message", "Record successfully saved!");
 session.setAttribute("message", "Sorry, an error occurred!");
 } 
 
-response.sendRedirect("adddaybookform.jsp?sname="+t.getSalesAccount().replace("&", "%26")+"&pname="+t.getPurchaseAccount().replace("&", "%26")+"&commodity="+t.getCommodity()+"&sbro="+t.getBrokrageSale()+"&pbro="+t.getBrokragePurchase()+"&truck="+t.getTruck()); 
+response.sendRedirect("adddaybookform.jsp?sname="+t.getSalesAccount().replace("&", "%26")+"&pname="+t.getPurchaseAccount().replace("&", "%26")+"&commodity="+t.getCommodity()+"&sbro="+t.getBrokrageSale()+"&pbro="+t.getBrokragePurchase()+"&truck="+t.getTruck()+"&date="+t.getDate()); 
 %>  

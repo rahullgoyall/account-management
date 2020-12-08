@@ -1,7 +1,7 @@
 
 <%@page import="utility.PdfGenerator"%>
 <%@page import="dao.DayBookDao"%>
-<%@page import="dao.PartyInfoDao,bean.*,java.util.*"%>  
+<%@page import="dao.PartyInfoDao,bean.*,java.util.*,java.text.SimpleDateFormat"%>  
 <jsp:include page="header.jsp"></jsp:include>  
  <!DOCTYPE html>   
 <html>  
@@ -26,6 +26,11 @@ if(session.getAttribute("login_session")==null){
 }
  %>   
 
+<%
+Date d = new Date();
+SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+String formattedDate = simpleDateFormat.format(d);
+%>
  
  <%  
 List<DayBook> list=DayBookDao.getAllRecords();  
@@ -56,9 +61,9 @@ PdfGenerator.DayBookPdf(list,dateFrom,dateTo);
 <div class="col-sm-12" style="background-color:lavender;">
 <form class="form-inline" method="post" action="viewdaybook.jsp">        
         <span>Date From:</span>
-        <input id="date1" name="dateFrom"  type="date" />
+        <input id="date1" name="dateFrom"  type="date" value="<%=formattedDate %>"/>
         <span>To:</span>
-        <input id="date2" name="dateTo"  type="date" />
+        <input id="date2" name="dateTo"  type="date" value="<%=formattedDate %>"/>
       
 <button class="btn btn-primary btn-md" type="submit" name="save" >Search</button>
 </form>
@@ -128,6 +133,6 @@ PdfGenerator.DayBookPdf(list,dateFrom,dateTo);
 	} 
 
 	today = yyyy+'-'+mm+'-'+dd;
-	document.getElementById("date1").defaultValue = today;
-	document.getElementById("date2").defaultValue = today;
+	//document.getElementById("date1").defaultValue = today;
+	//document.getElementById("date2").defaultValue = today;
 </script>

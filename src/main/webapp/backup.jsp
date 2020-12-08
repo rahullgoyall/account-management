@@ -12,13 +12,16 @@ String dbPass = "admin";
 /***********************************************************/
 // Execute Shell Command
 /***********************************************************/
-String executeCmd = "";
-executeCmd = "mysqldump -u "+dbUser+" -p"+dbPass+" "+dbName+" -r D:\\backup\\backup_"+java.time.LocalDate.now()+".sql";
 
 File directory = new File("D:\\backup");
 if (! directory.exists()){
 	directory.mkdir();
 }
+
+
+String executeCmd = "";
+executeCmd = "mysqldump -u "+dbUser+" -p"+dbPass+" "+dbName+" -r D:\\backup\\backup_"+java.time.LocalDate.now()+".sql";
+
 
 Process runtimeProcess;
 try {

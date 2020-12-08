@@ -37,7 +37,12 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
 <div class="container">
   <h2>Add CashBook Info</h2>
   <div class="panel panel-default">
-    <div class="panel-heading"><a href="viewcashbook.jsp">View All Records</a><br/>  </div>
+    <div class="panel-heading"><a href="viewcashbook.jsp">View All Records</a>
+    <% String message = (String)session.getAttribute("message");
+    out.print(message);
+    session.setAttribute("message", "");
+    %>
+     </div>
     <div class="panel-body">
     
     <form class="form-horizontal" action="addcashbook.jsp" method="post">
@@ -81,8 +86,9 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
       <label class="control-label col-sm-2" for="pwd">Status:</label>
       <div class="col-sm-5">     
       <select class="form-control"  name="status">
-      <option value='Payment'>Payment</option> 
       <option value='Received'>Received</option> 
+      <option value='Payment'>Payment</option> 
+      
        </select>   
       </div>
     </div>
@@ -104,10 +110,7 @@ List<String> commodityNames =CommodityDao.getAllCommodityName();
     
     
     <div class="panel-footer">
-    <% String message = (String)session.getAttribute("message");
-    out.print(message);
-    session.setAttribute("message", "");
-    %>
+    
     </div>
   </div>
 </div>

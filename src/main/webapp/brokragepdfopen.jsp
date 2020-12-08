@@ -4,7 +4,7 @@
 
 try {
 	String party = (String)session.getAttribute("partyName");
-	File pdfFile = new File("C:\\New folder\\"+party+".pdf");
+	File pdfFile = new File("D:\\bills\\"+party+".pdf");
 	if (pdfFile.exists()) {
 
 		if (Desktop.isDesktopSupported()) {
