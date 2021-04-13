@@ -62,7 +62,7 @@ public class DbUtils {
 	}
 
 	public static HashMap<String,String> getLocatorData(String pageName, String locatorName){
-		HashMap<String,String> hashMap = new HashMap<>();
+		HashMap<String,String> hashMap = new HashMap<String,String>();
 		try {
 			PreparedStatement stmt = ConnectionProvider.getDBConnection().prepareStatement("select * from locators where page_name=? and locator_name=?");
 			stmt.setString(1,pageName);
