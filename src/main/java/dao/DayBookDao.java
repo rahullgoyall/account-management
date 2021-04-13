@@ -13,6 +13,7 @@ import java.util.List;
 
 import bean.BrokrageBill;
 import bean.DayBook;
+import bean.FinancialYear;
 import bean.PartyInfo;
 import db.ConnectionProvider;
 
@@ -138,10 +139,11 @@ public class DayBookDao {
 	
 	
 	public static List<DayBook> getAllRecords(){  
-		List<DayBook> list=new ArrayList<DayBook>();  
+		List<DayBook> list=new ArrayList<DayBook>(); 
+		FinancialYear f = FinancialYearDao.getRecordByStatus();
 	    try{  
 	        Connection con=ConnectionProvider.getDBConnection();
-	        PreparedStatement ps=con.prepareStatement("select * from daybook"); 
+	        PreparedStatement ps=con.prepareStatement("select * from daybook where date >= '"+f.getFrom()+"' and date <= '"+f.getTo()+"'"); 
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	        	Format formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -239,7 +241,13 @@ public class DayBookDao {
 	    return list;  
 	}
 	
-	public static List<BrokrageBill> getBrokrageBillByFilter(String lName, String dateFrom, String dateTo){ 
+	public static List<BrokrageBill> getBrokrageBillByFilter(String lName, String dateFrom, String dateTo){
+		FinancialYear f = FinancialYearDao.getRecordByStatus();
+		if(dateFrom.isEmpty() && dateTo.isEmpty()){
+			
+			dateFrom = f.getFrom();
+			dateTo = f.getTo();
+		}
 		List<DayBook> filterDaybook = getDaybookByFilter(lName,dateFrom,dateTo);
 		List<BrokrageBill> brokrageBills=new ArrayList<BrokrageBill>();
 		

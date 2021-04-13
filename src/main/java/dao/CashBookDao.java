@@ -13,6 +13,7 @@ import java.util.List;
 import bean.BrokrageBill;
 import bean.CashBook;
 import bean.DayBook;
+import bean.FinancialYear;
 import db.ConnectionProvider;
 
 public class CashBookDao {
@@ -108,9 +109,10 @@ public class CashBookDao {
 	
 	public static List<CashBook> getAllRecords(){  
 		List<CashBook> list=new ArrayList<CashBook>();  
+		FinancialYear f = FinancialYearDao.getRecordByStatus();
 	    try{  
 	        Connection con=ConnectionProvider.getDBConnection();
-	        PreparedStatement ps=con.prepareStatement("select * from cashbook"); 
+	        PreparedStatement ps=con.prepareStatement("select * from cashbook where date >= '"+f.getFrom()+"' and date <= '"+f.getTo()+"'"); 
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	        	Format formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -161,9 +163,10 @@ public class CashBookDao {
 	
 	public static List<CashBook> getCashBookByPartyNames(String partyName){  
 		List<CashBook> list=new ArrayList<CashBook>();  
+		FinancialYear f = FinancialYearDao.getRecordByStatus();
 	    try{  
 	        Connection con=ConnectionProvider.getDBConnection();
-	        PreparedStatement ps=con.prepareStatement("select * from cashbook where party_name='"+partyName+"'"); 
+	        PreparedStatement ps=con.prepareStatement("select * from cashbook where party_name='"+partyName+"' and date >= '"+f.getFrom()+"' and date <= '"+f.getTo()+"'"); 
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	        	Format formatter = new SimpleDateFormat("dd/MM/yyyy");

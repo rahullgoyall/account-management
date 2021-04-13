@@ -1,5 +1,5 @@
 
-<%@page import="dao.PartyInfoDao,bean.*,java.util.*"%>  
+<%@page import="dao.PartyInfoDao,bean.*,dao.FinancialYearDao,java.util.*"%>  
 <jsp:include page="header.jsp"></jsp:include>  
  <!DOCTYPE html>   
 <html>  
@@ -31,9 +31,32 @@
 </div>
 <%} %>
 
+
+<%  
+List<FinancialYear> years=FinancialYearDao.getAllRecords();
+String yearId =request.getParameter("year");
+if(yearId!=null){
+	FinancialYearDao.update(Integer.parseInt(yearId));
+}
+
+%> 
+
 <div class="row">
-  <div class="col-sm-6" style="background-color:lavender;"><b>Party Information List</b></div>
-  <div class="col-sm-6" ><a href="addpartyinfoform.jsp" class="btn btn-info" role="button">Add New Party</a></div>
+  <div class="col-sm-3" style="background-color:lavender;"><b>Party Information List</b></div>
+  <div class="col-sm-2" ><a href="addpartyinfoform.jsp" class="btn btn-info" role="button">Add New Party</a></div>
+  <div class="col-sm-4" ">
+   <form class="form-inline" method="post" action="viewpartyinfo.jsp">
+	<label class="control-label col-sm-3" for="pwd">Financial Year:</label>
+      <div class="col-sm-4">     
+      <select class="form-control"  name="year">
+      <%for(FinancialYear f : years){ %>
+       <option  <%if(f.getStatus().equals("yes")){ out.print("selected=true");} %> value='<%= f.getId()%>'><%= f.getYear()%></option>  
+         <%}%>
+       </select>   
+      </div>
+	<button type="submit" name="apply" class="btn btn-primary">Apply</button>
+	</form>
+  </div>
 </div> 
 
 <% 

@@ -38,7 +38,7 @@ public class PdfGenerator {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 
-		String fileName = "C:\\New folder\\daybook.pdf";
+		String fileName = "D:\\bills\\daybook.pdf";
 		Document document = new Document();
 
 		try {
